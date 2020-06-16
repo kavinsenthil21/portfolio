@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-      {% load staticfiles %}
+    {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -55,50 +55,36 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" href="https://in.linkedin.com/in/kavin-ts-552418171">LinkedIn</a>
-                <a class="nav-item nav-link" href="{% static 'resume.pdf'%}">Resume</a>
-                <a class="nav-item nav-link" href="{% url 'allblogs'%}">Blog</a>
+                <a class="nav-item nav-link " href="{% static 'resume.pdf'%}">Resume</a>
+                <a class="nav-item nav-link active" href="{% url 'allblogs'%}">Blog</a>
               </div>
             </div>
           </nav>
 </header>
 
 <main role="main">
+<div class='container'>
+ <h1 class='text-center pt-3'>Welcome to kavin's blog</h1>
+  <br/>
+  <br/>
+ <h2>Latest Posts</h2> 
+ <hr/>
+ 
+ {% for blog in blogs.all %}
+ 
+    <h1>{{ blog.title }}</h1>
+    <img class = 'image-fluid'  src= "{{ blog.image.url}}" />
+     <br/>
+     <br/>
+     
+       <p> {{blog.body }}</p>
+       <small class="text-muted">{{blog.pub_date}}</small>
+       <br/>
+       <hr/>
+ {% endfor %}
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Hello am Kavin!</h1>
-      <p class="lead text-muted">Am a Django Developer and Welcome to my Site!</p>
-      <p>
-        <a href="mailto:kavintsk21@gmail.com" class="btn btn-primary my-2">Email me</a>
-        </p>
-       <img src="{% static 'kavin.jpg' %}" height="200"/> 
-    </div>
-  </section>
-  
 
-  <div class="album py-5 bg-light">
-    <h2>My Projects!</h2>
-    <div class="container">
-
-      <div class="row">
-       {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow">
-           <img class = 'card-img-top'  src= "{{ job.image.url}}" />
-            <div class="card-body">
-              <p class="card-text"> {{job.summary }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-
+</div>  
 </main>
 
 <footer class="text-muted">
